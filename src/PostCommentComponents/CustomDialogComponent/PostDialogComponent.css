@@ -1,0 +1,14 @@
+
+
+
+.post_message_postdialog{
+    width: 70px;
+    height: 30px;
+    background-color: red !important;
+    color: #fff !important;
+    text-align: center;
+    font-size: 11px !important;
+    padding: 10px !important;
+    border-radius: 20px 0 10px 0 !important;
+    margin-top: 25px;
+}

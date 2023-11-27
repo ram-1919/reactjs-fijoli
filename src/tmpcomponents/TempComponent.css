@@ -1,0 +1,23 @@
+
+.tempcomp-container {
+    margin: 0 auto;
+    width: 500px;
+    height: 500px;
+    border: 1px solid red;
+}
+
+.table_container {
+    width: 100%;
+    border: 1px solid;
+}
+
+.display_middle {
+    text-align: center;
+}
+
+.sub_table {
+    width: 100%;
+    border: 1px solid blue;
+}
+
+

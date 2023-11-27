@@ -1,0 +1,38 @@
+
+.signupformFinal-container-pcfourth{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.table_container-pcfourth {
+    width: 100%;
+    /* border: 1px solid red; */
+}
+
+.table_container-complete-pcfourth {
+    width: 90%;
+    /* border: 2px solid red; */
+    padding: 2px;
+    margin-top: 25px;
+    margin-bottom: 6px;
+    margin: 0 auto;
+    height: 80px;
+
+}
+
+.display_middle_pcfourth{
+    text-align: center;
+}
+
+.button_oval_style_submit-pcfourth{
+    background-color:#E50F32;
+    color:white;
+    border: 1px;
+    border-radius:35px/25px;
+    width: 125px;
+    height: 24px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+    margin-top: 40px;
+}

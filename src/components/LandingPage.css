@@ -1,0 +1,121 @@
+.login-main-lp {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.image-container-lp {
+  position: relative;
+  display: inline-block;
+  overflow: hidden; /* Hide the cropped circular area */
+}
+
+.image-lp {
+  display: block;
+  width: 410px; /* Set the width of your image */
+  height: 630px;
+  margin-top: 3px;
+}
+
+.image_container_scurve {
+  /* display: block; */
+  /* width: 100px; */
+  height: 400px;
+  margin-top: -290px;
+  /* z-index: -1; */
+}
+
+.image-lp_scurve {
+  display: block;
+  width: 410px; /* Set the width of your image */
+  height: auto;
+  
+}
+
+.image-crop-lp {
+  position: absolute;
+  width: 99%;
+  height: 240px;
+  bottom: 0;
+  left: 2px;
+  border-top-left-radius: 40%;
+  background-color: white;
+}
+
+.image-crop-right-lp {
+  position: absolute;
+  width: 40%;
+  height: 50px;
+  top: 53%;
+  left: 60%;
+  background-color: white;
+}
+
+.line-lp{
+  height:5px;
+  width:40px;
+  background-color:black;
+  margin-top:15px;
+}
+
+.indicators-lp {
+  position: absolute;
+  bottom: 12px;
+  left: 40%;
+}
+
+.indicator-lp {
+  /* background-color: gray; */
+  height: 9px;
+  width: 9px;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px #555;
+  margin: 3px;
+  cursor: none;
+}
+
+.indicator-inactive-lp {
+  background-color: black;
+}
+
+.image-message-lp {
+  display: flex;
+  justify-content: center;
+  margin-top: -50px;
+} 
+
+.marTop20-lp {
+  /* margin-top: -210px; */
+  border: 1px solid red;
+}
+
+.login-button-lp {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  left: 20%;
+  bottom: 15%;
+}
+
+.button_oval_style_login-lp {
+  padding:10px;
+  background-color:#E50F32;
+  -webkit-border-radius:40px/24px;
+  -moz-border-radius:40px/24px;
+  border-radius:35px/25px;
+  color:white;
+  text-align: center;
+  border: 1px;
+  width: 100px;
+  cursor: pointer;
+}
+
+.image_container_controls {
+  height: 170px;
+  /* background-color: gray; */
+  /* border: 1px solid red; */
+  margin-top: -200px;
+  z-index: 10;
+}

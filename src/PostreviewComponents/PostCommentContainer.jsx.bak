@@ -1,0 +1,69 @@
+
+
+import { fabClasses } from '@mui/material';
+import React, { useMemo, useState } from 'react'
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import clearPostCommentsAction from '../actions/clearPostCommentsAction';
+import getpostCommentAction from '../actions/getpostCommentAction';
+import PostCommentsController from '../Controllers/PostCommentsController';
+import EnumPostReviewType from '../singletonControllers/PostReviewTypes';
+import PostCommentComponent from './PostCommentComponent';
+import ViewPostCommentContainer from './ViewPostCommentContainer';
+
+const PostCommentContainer = ({post_id, logged_in_user_id}) =>{
+ 
+  const dispatch    = useDispatch();
+  const [postcomments,setpostcomments] = useState([]);
+
+  //post new review comment memoized
+  const memoizedpostnewComment  = useMemo(()=> {
+    return PostCommentsController.getNewPostComment(post_id, logged_in_user_id);
+  },[post_id]);
+
+  //get list of post comments
+  const lstofpostcomments = useSelector((state) =>{
+        if((state.storeComponent.lstofpostcomments) &&
+          (Object.keys(state.storeComponent.lstofpostcomments).includes(post_id.toString()))){
+              return state.storeComponent.lstofpostcomments[post_id.toString()];
+        }else{
+            return undefined;
+        }
+  });
+
+  useEffect(()=>{
+    console.log("use Effect for postreview container");
+    if(undefined === lstofpostcomments){
+      dispatch(getpostCommentAction(post_id, logged_in_user_id));
+    }
+    return(()=>{
+      dispatch(clearPostCommentsAction(post_id));
+    })
+  },[]);
+
+  useEffect(()=>{
+        if((lstofpostcomments) && (0 < lstofpostcomments.length)){
+           lstofpostcomments.map((postitem, index)=>{
+            lstofpostcomments[index]["logged_in_user_id"] = logged_in_user_id;
+                 return lstofpostcomments[index];
+            });
+            setpostcomments(lstofpostcomments);
+        }else if(undefined === lstofpostcomments){
+          if(postcomments !== undefined){
+            setpostcomments(undefined);
+          }
+        }
+  },[lstofpostcomments]);
+  
+
+  return (
+    <div>
+        {((postcomments) && (0 < postcomments.length)) &&
+          <ViewPostCommentContainer postcomments = {postcomments} />
+        }
+        <PostCommentComponent postcomment = {memoizedpostnewComment} posttype={EnumPostReviewType.newPost} />
+    </div>
+  )
+}
+
+export default PostCommentContainer

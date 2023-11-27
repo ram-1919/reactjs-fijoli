@@ -1,0 +1,91 @@
+.image-container {
+    position: relative;
+    display: inline-block;
+    overflow: hidden; /* Hide the cropped circular area */
+}
+  
+.image {
+    display: block;
+    width: 410px; /* Set the width of your image */
+    height: 630px;
+    margin-top: 10px;
+ }
+
+.image-crop {
+  position: absolute;
+  width: 99%;
+  height: 240px;
+  bottom: 0;
+  left: 2px;
+  border-top-left-radius: 40%;
+  background-color: white;
+}
+ 
+.image-crop1 {
+    position: absolute;
+    width: 100%; /* Make sure the circular crop spans the width of the container */
+    height: 333px; /* Adjust the height of the circular crop as needed */
+    top: 0;
+    left: 0;
+    border-bottom-right-radius: 40%;
+    background-color: red;
+ }
+
+.image-crop-right {
+  position: absolute;
+  width: 40%;
+  height: 50px;
+  top: 53%;
+  left: 60%;
+  background-color: white;
+
+}
+
+
+.line
+{
+    height:5px;
+    width:40px;
+    background-color:black;
+    margin-top:15px;
+}
+
+.indicators {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 55px;
+}
+
+.indicator {
+  background-color: gray;
+  height: 9px;
+  width: 9px;
+  border-radius: 100%;
+  border: none;
+  outline: none;
+  box-shadow: 0px 0px 5px #555;
+  margin: 3px;
+  cursor: none;
+}
+
+.indicator-inactive {
+  background-color: black;
+}
+
+.image-message {
+  display: flex;
+  justify-content: center;
+}
+
+.marTop20 {
+  margin-top: 20px;
+}
+
+.login-button {
+  display: flex;
+  justify-content: center;
+  margin: 42px 0;
+}
+
+

@@ -1,0 +1,88 @@
+
+
+.select_pic_row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    /* border: 1px solid black; */
+    background-color: whitesmoke;
+    border-radius: 10px;
+    /* margin: 0 auto; */
+    /* margin-left: -20px; */
+}
+
+
+.select_pic_container{
+    /* position: absolute !important; */
+    border-radius: 100px;
+    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+    width: 198px;
+    height: 198px;  
+    background: gray;
+}
+
+.select_profile_img {
+    /* position: absolute; */
+    border-radius: 100px;
+    align-items: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 198px;
+    height: 198px;  
+}
+
+.select_pic_container {
+    display: flex !important;
+    justify-content: center !important;
+    /* border: 1px solid black; */
+}
+
+.select_pic_icons_row {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    /* border: 1px solid black; */
+    margin-left: -20px;
+}
+
+.select_pic_icon {
+    /* style={{justifyContent: "center", alignItems: "center", display: "flex"}} */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    cursor: pointer;
+}
+
+.pic_selection_cofirmation_btns{
+    /* style={{fontSize: "10px", height: "25px", textAlign: "center"}} */
+    font-size: 10px;
+    height: 25px;
+    text-align: center;
+}
+
+.select_pic_main_table {
+    /* style={{ height: '250px', 
+        width: "100%", border: "1px solid black" ,
+        borderRadius: "10px"}} */
+
+    height: 250px;
+    width: 100%;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.select_pic_okcancel_div{
+    /* style={{display: 'flex', verticalAlign: "bottom",
+        marginTop: "10px", marginBottom: "3px",
+        justifyContent: 'right'}} */
+
+        display: flex;
+        vertical-align: bottom;
+        margin-top: 10px;
+        margin-bottom: 3px;
+        justify-content: right;
+        
+}

@@ -1,0 +1,149 @@
+
+.signupformFinal_container_pc5{
+    margin: 0 auto;
+    width: 100%;
+}
+
+.table_container_pc5 {
+    width: 100%;
+    /* border: 1px solid red; */
+}
+
+.table_container_pricing_pc5{
+    width: 100%;
+    /* border: 2px solid red; */
+    /* padding: 2px; */
+    margin-top: 3px;
+    margin-bottom: 6px;
+    margin: 0 auto;
+}
+
+.table_container_pricing_pc5_hidden{
+    width: 100%;
+    /* border: 2px solid red; */
+    /* padding: 2px; */
+    margin-top: 3px;
+    margin-bottom: 6px;
+    margin: 0 auto;
+    visibility: hidden;
+}
+
+.table_container-location-pc5{
+    width: 98%;
+    /* border: 2px solid red; */
+    /* padding: 2px; */
+    margin-top: 3px;
+    margin-bottom: 6px;
+    margin: 0 auto;
+
+}
+
+.table_container-certification_pc5 {
+    width: 100%;
+    /* border: 2px solid red; */
+    padding: 2px;
+    margin-top: 3px;
+    margin-bottom: 6px;
+    margin: 0 auto;
+}
+
+.checkbox_col_pc5{
+    width: 6%;
+}
+
+
+.display_middle_pc5{
+    text-align: center;
+}
+
+
+.button_oval_style_submit_pc5 {
+    background-color:#E50F32;
+    color:white;
+    border: 1px;
+    border-radius:35px/25px;
+    width: 125px;
+    height: 24px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.table_pricing_first_col_pc5 {
+    width: 95%;
+    border-radius: 10px;
+    text-align: center;
+    height: 25px;
+    background: white;
+    color: black;
+}
+
+.table_pricing_second_col_pc5 {
+    width: 84%;
+    border-radius: 10px;
+    text-align: center;
+    height: 25px;
+    background: white;
+    color: black;
+    text-align: left;
+}
+
+.table_pricing_third_col_pc5 {
+    width: 84%;
+    border-radius: 10px;
+    text-align: center;
+    height: 25px;
+    background: white;
+    color: black;
+    text-align: left;
+}
+
+
+.display_left_checkbox_pc5 {
+    margin-left: 0px;
+}
+
+.table_container-complete-pc5{
+    width: 90%;
+    /* border: 2px solid red; */
+    padding: 2px;
+    margin-top: 3px;
+    margin-bottom: 6px;
+    margin: 0 auto;
+    height: 40px;
+}
+
+.display_middle_pc5{
+    text-align: center;
+}
+
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root{
+    overflow: visible !important;
+    line-height: .1em !important;
+}
+
+.payment_heading_pc5{
+    background: gray;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    height: 25px;
+    width: 124px;
+    border: 1px solid;
+}
+
+.payment_heading_pc5_cell {
+    text-align: center;
+}
+
+.currenct_select_pc5 {
+    width: 55px;
+    margin-left: -56px;
+    border-radius: 10px;
+    height: 26px;
+}
+
+.currently_training_pc5 {
+    border: none;
+}

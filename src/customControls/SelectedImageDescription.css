@@ -1,0 +1,102 @@
+
+
+.select_description_main_table{
+    height: 250px;
+    width: 100%;
+    /* border: 1px solid black; */
+    border-radius: 10px;
+}
+
+.select_description_img_row {
+    /* display: flex !important; */
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid black;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    /* width: 35%; */
+    height: 100%;
+    /* margin-left: 20px; */
+    /* margin: 0 auto; */
+    /* margin-left: -20px; */
+}
+
+.select_description_row {
+    /* display: flex !important; */
+    align-items: center !important;
+    justify-content: center !important;
+    border: 1px solid black;
+    /* background-color: whitesmoke; */
+    border-radius: 10px;
+    width: 65%;
+    /* display: none; */
+    /* margin: 0 auto; */
+    /* margin-left: -20px; */
+}
+
+.select_description_container{
+    /* position: absolute !important; */
+    border-radius: 100px;
+    align-items: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 198px;
+    height: 198px;  
+    background: gray;
+    
+}
+
+.select_description_pdf_container{
+    /* position: absolute !important; */
+    border-radius: 100px;
+    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+    width: 198px;
+    height: 198px;  
+    background: wheat;
+}
+
+.select_description_img {
+    /* position: absolute; */
+    border-radius: 100px;
+    align-items: center !important;
+    display: flex !important;
+    justify-content: center !important;
+    width: 198px;
+    height: 198px;  
+}
+
+.select_description_okcancel_div{
+    /* style={{display: 'flex', verticalAlign: "bottom",
+        marginTop: "10px", marginBottom: "3px",
+        justifyContent: 'right'}} */
+        /* border: 1px solid red; */
+        display: flex;
+        vertical-align: bottom;
+        margin-top: 10px;
+        margin-bottom: 3px;
+        justify-content: right;
+        
+}
+
+.description_selection_cofirmation_btns{
+    /* style={{fontSize: "10px", height: "25px", textAlign: "center"}} */
+    font-size: 10px;
+    height: 25px;
+    text-align: center;
+}
+
+.description_filename_div{
+    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+    margin-top: 3px;
+}
+
+.description_icons_div{
+    align-items: center;
+    display: flex !important;
+    justify-content: center !important;
+   
+}

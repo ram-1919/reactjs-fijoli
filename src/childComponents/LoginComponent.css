@@ -1,0 +1,46 @@
+.image-main{
+    height:450px;
+    background: url("./../asset/image1.jpg");
+    border-bottom-left-radius: 210px;
+    border-bottom-right-radius: 210px;
+    margin-top: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.login-container {
+    margin: 0 auto;
+    width: 350px;
+    /* border: 1px solid; */
+}
+
+.login-container-box {
+    width: 100%;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.credential-Item{
+    margin-top: 10px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.button_oval_style_login {
+    background-color:#E50F32;
+    border-radius:35px/25px;
+    color:white;
+    text-align: center;
+    border: 1px;
+    width: 94px;
+    height: 24px;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+.link_login{
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    margin-top: 25px;
+}

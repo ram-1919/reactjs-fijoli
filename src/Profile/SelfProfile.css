@@ -1,0 +1,219 @@
+
+.selfprofile_container {
+    margin: 0 auto;
+    width: 99%;
+    border: 1px solid lightgray;
+}
+
+.selfprofile_image_main{
+    /* background: url("./../asset/img1.jpg"); */
+    margin-top: 5px;
+    /* background-size: contain;
+    background-repeat: no-repeat; */
+    object-fit: cover;
+}
+
+.selfprofile_image_main_div {
+    width: 100%;
+    height: 180px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+.selfprofile_image_main_div img {
+    width: 100%;
+    max-height: 100%;
+  }
+
+  .selfprofile{
+    position: absolute;
+    top: 250px;
+    left: 47.2%;
+    height: 78px;
+    width: 78px;
+    border: 3px solid #fff;
+    border-radius: 50%;
+}
+
+.selfprofile_div_row_header_trainertype{
+  text-align: center;
+}
+
+.selfprofile_div_followers{
+  text-align: center;
+  height: 80px;
+}
+
+.selfprofile_div_table_followers{
+  /* style={{width: "25%", height: "100%"}} */
+  width: 25%;
+  height: 100%;
+}
+
+.selfprofile_div_table_followers_count {
+  /* style={{width: "90%", textAlign: "center", border: "none"}} */
+  border: none;
+  text-align: center;
+  width: 90%;
+}
+
+.selfprofile_div_table_followers_btn {
+  background: rgb(91, 201, 91) !important;
+}
+
+.selfprofile_div_table_following{
+  /* style={{width: "25%", height: "100%"}} */
+  width: 25%;
+  height: 100%;
+}
+
+.selfprofile_div_table_following_count {
+  /* style={{width: "90%", textAlign: "center", border: "none"}} */
+  border: none;
+  text-align: center;
+  width: 90%;
+}
+
+.selfprofile_div_table_following_btn {
+  background: red  !important;
+}
+
+.selfprofile_div_table_share{
+  /* style={{width: "50%", height: "100%", textAlign: "left"}} */
+  width: 50%;
+  height: 100%;
+  text-align: left;
+}
+
+.selfprofile_div_table_shareicon {
+  font-size: 35px;
+  margin-top: 20px;
+}
+
+.selfprofile_div_dob_whatsapp {
+  /* style={{height: "40px"}} */
+  height: 40px;
+}
+
+.selfprofile_div_table_row_dob_icon{
+  /* style={{width: "5%", height: "100%"}} */
+  width: 5%;
+  height: 100%;
+}
+
+.selfprofile_div_table_dob_icon{
+  font-size: 30px;
+  /* color: red; */
+}
+
+.selfprofile_div_table_follow_btn{
+  background: blue  !important;
+}
+
+.selfprofile_sel_div_table_follow_btn{
+  background: red !important;
+}
+
+.selfprofile_div_table_follow {
+  margin-top: 21px;
+  margin-right: 10px;
+}
+
+.selfprofile_div_table_row_dob_input{
+  /* style={{width: "22%", height: "100%"}} */
+  height: 100%;
+  width: 22%;
+}
+
+.selfprofile_div_table_row_location_input{
+  height: 100%;
+  width: 30%;
+}
+
+.selfprofile_div_table_location_icon{
+  font-size: 30px;
+  /* color: red; */
+}
+
+.selfprofile_div_table_block_icon{
+  font-size: 30px;
+  cursor: pointer;
+}
+
+/* style={{border: "none", width: "100%"}} */
+.selfprofile_div_table_dob_input{
+  border: none;
+  width: 67%;
+  font-size: 15px;
+}
+
+.selfprofile_div_table_row_whatsapp_icon{
+  /* style={{width: "24%", textAlign:"center", height: "100%"}} */
+  width: 24%;
+  text-align: center;
+  height: 100%;
+}
+
+.selfprofile_div_table_row_whatsapp_input{
+  /* style={{width: "25%", height: "100%"}} */
+  width: 25%;
+  height: 100%;
+}
+
+.selfprofile_div_table_whatsapp_input {
+  /* style={{border: "none", marginLeft: "-40px"}} */
+  border: none;
+  margin-left: -40px;
+  font-size: 15px;
+  margin-bottom: 6px;
+}
+
+.selfprofile_div_location_email {
+  /* style={{height: "40px"}} */
+  height: 40px;
+}
+/* style={{width: "5%", height: "100%"}} */
+.selfprofile_div_table_row_location_icon{
+  width: 5%;
+  height: 100%;
+}
+
+.selfprofile_div_table_col_location_input{
+  /* style={{width: "22%", height: "100%"}} */
+  width: 22%;
+  height: 100%;
+}
+
+.selfprofile_div_table_location_input{
+  /* style={{border: "none", width: "100%"}} */
+  border: none;
+  width: 100%;
+  font-size: 15px;
+}
+
+/* style={{width: "5%", height: "100%"}} */
+.selfprofile_div_table_col_modeEdit_icon{
+  width: 7%;
+  height: 100%;
+}
+
+.selfprofile_div_table_col_email_icon {
+  /* style={{width: "10%", textAlign:"center", height: "100%"}} */
+  width: 10%;
+  text-align: center;
+  height: 100%;
+}
+
+.selfprofile_div_table_col__email_input {
+  /* style={{width: "25%", height: "100%"}} */
+  width: 25%;
+  height: 100%;
+}
+
+.selfprofile_div_table_email_input {
+  /* style={{border: "none"}} */
+  border: none;
+  font-size: 15px;
+}

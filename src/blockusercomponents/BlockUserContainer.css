@@ -1,0 +1,23 @@
+
+
+/* style={{color : "red", textAlign: "center", justifyContent: "center", display: "flex",
+    border: "1px solid black", marginTop: "3px"}} */
+
+.blockuser_container_heading{
+    color: red;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 3px;
+}
+
+/* style={{color : "red", textAlign: "center"}} */
+
+.blockuser_container_no_list {
+    color: red;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    margin-top: 3px;
+    font-size: 20px;
+}

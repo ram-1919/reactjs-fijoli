@@ -1,0 +1,41 @@
+.homepage_header_container {
+    margin: 0 auto;
+    width: 100%;
+    margin-top: 15px;
+    /* border: 1px solid red; */
+}
+
+.main_div_homepage_header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title_table_homepage_header{
+    width: 100%;
+}
+
+.col_first_homepage_header {
+    width: 15%;
+}
+
+.col_second_homepage_header {
+    width: 65%;
+}
+
+.col_third_homepage_header {
+    width: 10%;
+    text-align: right;
+}
+
+.col_fourth_homepage_header {
+    width: 10%;
+}
+
+.home_line_homepage_header
+{
+    height:3px;
+    width: 100%;
+    background-color:black;
+    margin-top:15px;
+}

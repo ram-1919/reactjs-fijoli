@@ -1,0 +1,262 @@
+
+
+import { Button, IconButton } from '@mui/material';
+import React, { memo } from 'react'
+import "./ViewReplyPostCommentComponent.css";
+
+import img2 from "./../asset/img6.jpg";
+import { useState } from 'react';
+import PostCommentsController from '../Controllers/PostCommentsController';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import resetStatus from '../actions/resetStatus';
+import { useNavigate } from 'react-router-dom';
+import ReplyIcon from '@mui/icons-material/Reply';
+import ThumbUpOutlinedIcon from '@mui/icons-material/ThumbUpOutlined';
+import ThumbDownOffAltOutlinedIcon from '@mui/icons-material/ThumbDownOffAltOutlined';
+import PostCommentComponent from './PostCommentComponent';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import EnumPostCommentType from '../singletonControllers/PostReviewTypes';
+import postCommentAction from '../actions/postCommentAction';
+import clearReplyPostCommentStatusAction from '../actions/clearReplyPostCommentStatusAction';
+import getreplypostCommentsAction from '../actions/getreplypostCommentsAction';
+import postcommentlikedislikeAction from './Actions/postcommentlikedislikeAction';
+import EnumPostCommentLikeDisliketype from './models/EnumPostCommentLikeDisliketype';
+import clearpostcommentlikedislikeAction from './Actions/clearpostcommentlikedislikeAction';
+import getpostcommentlikedislikescountAction from './Actions/getpostcommentlikedislikescountAction';
+import removedeletedReplyPostComment from './Actions/removedeletedReplyPostAction';
+
+const iconStyle = {
+    fontSize: '35px', // Adjust the size as needed
+    color  : "black"
+};
+
+const selectediconStyle = {
+    fontSize : "35px",
+    color    : "red"
+}
+
+const ViewReplyPostCommentComponent =({postcomment}) =>{
+
+    console.log("postcomment " + postcomment.post_id);
+    const dispatch      = useDispatch();
+    const navigate      = useNavigate();
+
+    //reply comment objects 
+    const [posttype, setposttype]                       = useState(EnumPostCommentType.none);
+    const [updatedpostcomment,   setupdatedpostcomment]     = useState("");
+    const [commenetslikesState,  setcommentslikesState]     = useState({
+            "like_count" : 0 , "dislike_count"  : 0
+    });
+
+    const subpostCURDState = useSelector((state)=> state.storeComponent.subpostCURDState);
+
+    const postcommentlikedislikeState = useSelector((state)=> {
+        if(Object.keys(state.storeComponent).includes("postcommentlikedislikeState")){
+            return state.storeComponent.postcommentlikedislikeState[postcomment.id]
+        }
+    });
+
+    const postcommentslikesDislikes = useSelector((state)=>{
+        return state.storeComponent.postcommentslikesDislikes[postcomment.id];
+    })
+
+    useEffect(()=>{
+        if(postcommentslikesDislikes){
+            let status = ((commenetslikesState.like_count !== postcommentslikesDislikes.likes_count) ||
+                          (commenetslikesState.dislike_count !== postcommentslikesDislikes.dislikes_count));
+            
+            if(status){
+                commenetslikesState.like_count = postcommentslikesDislikes.likes_count;
+                commenetslikesState.dislike_count = postcommentslikesDislikes.dislikes_count;
+                setcommentslikesState({...commenetslikesState});
+            }
+        }
+    },[postcommentslikesDislikes]);
+
+    useEffect(()=>{
+        if(postcommentlikedislikeState && (200 === postcommentlikedislikeState.status)){
+            dispatch(clearpostcommentlikedislikeAction());
+            //store the like/dislike info
+            postcomment["is_active"] = postcommentlikedislikeState["is_active"];
+            postcomment["reaction"]  = postcommentlikedislikeState["reaction"];
+            
+            dispatch(getpostcommentlikedislikescountAction(postcomment.id));
+        }else if(postcommentlikedislikeState && (400 === postcommentlikedislikeState.status)){
+            dispatch(clearpostcommentlikedislikeAction());
+            navigate("/error");
+        }
+    },[postcommentlikedislikeState]);
+
+    useEffect(()=>{
+
+        let status = ((commenetslikesState.like_count !== postcomment.like_count) ||
+        (commenetslikesState.dislike_count !== postcomment.dislike_count));
+
+        if(status){
+            commenetslikesState.like_count = postcomment.like_count;
+            commenetslikesState.dislike_count = postcomment.dislike_count;
+            setcommentslikesState({...commenetslikesState});
+        }
+
+        // dispatch(getpostcommentlikedislikescountAction(postcomment.id));
+    },[]);
+
+    useEffect(()=>{
+      if(((subpostCURDState) && 
+         (postcomment.id === subpostCURDState.reply_id)) &&
+         ((200 === subpostCURDState.status) ||
+         (400 === subpostCURDState.status))){
+            resetComponent(subpostCURDState.status);
+      }
+    },[subpostCURDState]);
+  
+  const resetComponent = (postState) =>{
+    switch(postState){
+        case 200:
+            setupdatedpostcomment("");
+            switch(posttype){
+                case EnumPostCommentType.replyReplyPost:
+                case EnumPostCommentType.editReplyPost:
+                    dispatch(getreplypostCommentsAction(postcomment.main_post_id, postcomment.post_id));
+                    break;
+                case EnumPostCommentType.deleteReplyPost:
+                    dispatch(clearReplyPostCommentStatusAction());
+                    dispatch(getreplypostCommentsAction(postcomment.main_post_id, postcomment.post_id, postcomment.logged_in_user_id));
+                    break;
+            }
+            setposttype(EnumPostCommentType.none);
+            break;
+
+        case 400:
+            setupdatedpostcomment("");
+            setposttype(EnumPostCommentType.none);
+            dispatch(resetStatus());
+            navigate("/error");
+            break;
+    }
+
+  }
+    
+    //handle comment sub operations / state operations
+    const handleCommentState = (eventType) =>{
+        switch(eventType){
+
+            case EnumPostCommentType.replyReplyPost:
+                setupdatedpostcomment(PostCommentsController.getRepliesReplyPostComment(postcomment));
+                setposttype(EnumPostCommentType.replyReplyPost);
+            break;
+
+            case EnumPostCommentLikeDisliketype.like:
+                let postcommentlikeState = PostCommentsController.getpostReplyCommentlikeORdislikeState(postcomment, 1);
+                console.log(postcommentlikeState);
+                dispatch(postcommentlikedislikeAction(postcommentlikeState));
+
+            break;
+
+            case EnumPostCommentLikeDisliketype.dislike:
+                let postcommentdislikeState = PostCommentsController.getpostReplyCommentlikeORdislikeState(postcomment, 0);
+                console.log(postcommentdislikeState);
+                dispatch(postcommentlikedislikeAction(postcommentdislikeState));
+
+            break;
+        }
+    }
+
+    //event which sets the operation type as edit/delete
+    //perform the selected operation
+    const handlesubCURDOperation = (eventType) =>{
+
+        //executes event 
+        switch(eventType){
+            case EnumPostCommentType.editReplyPost:
+                setposttype(EnumPostCommentType.editReplyPost);
+                setupdatedpostcomment(PostCommentsController.getEditRelyPostComment(postcomment));
+                break;
+
+            case EnumPostCommentType.deleteReplyPost:
+                setposttype(EnumPostCommentType.deleteReplyPost);
+                dispatch(postCommentAction(PostCommentsController.getDeleteReplyPostComment(postcomment), EnumPostCommentType.deleteReplyPost));
+                break;
+        }
+    }
+
+
+  return (
+    <div>
+        {
+            ((EnumPostCommentType.none === posttype) || 
+             (EnumPostCommentType.replyReplyPost === posttype))&&
+            <div className="viewpostreplycomment_container">
+                <div className="viewpostreplycomment_header">
+                    <img src={img2} className="viewpostreplycomment_image_pic" />
+                    <span className='viewpostreplycomment_username'>{postcomment.user_name}</span><br/>
+                </div>
+
+                <div className='viewpostreplydisplayPost_review_desc_div'>
+                    <div className="viewpostreplycomment_desc">
+                        <span >{postcomment.comment_desc}</span>
+                    </div>
+                    { 
+                        (postcomment.logged_in_user_id === postcomment.comment_user_id) &&
+                        <div style={{flexDirection: "row", display: "flex"}}>
+                            <IconButton style={{justifyItems: "left"}} onClick={()=> handlesubCURDOperation(EnumPostCommentType.editReplyPost)}>
+                                <EditIcon />
+                            </IconButton>
+                            
+                            <IconButton style={{justifyItems: "left"}} onClick={()=> handlesubCURDOperation(EnumPostCommentType.deleteReplyPost)}>
+                                <DeleteIcon />
+                            </IconButton>
+                        </div>
+                    }
+                </div>
+                <div className="viewpostreplycomment_body">
+                    <div className="viewpostreplycomment_icons">
+                        <>
+                            <IconButton onClick={() => handleCommentState(EnumPostCommentLikeDisliketype.like)}>
+                                {
+                                    ((1 === postcomment["is_active"]) && (1 === postcomment["reaction"]))?
+                                        <ThumbUpOutlinedIcon style={selectediconStyle} />:
+                                        <ThumbUpOutlinedIcon style={iconStyle} />
+                                }
+                            </IconButton>
+                            <br/>
+                            <span className='viewpostreplycomment_thumbup_count'>{commenetslikesState.like_count}</span>
+                        </>
+                        <>
+                            <IconButton onClick={() => handleCommentState(EnumPostCommentLikeDisliketype.dislike)}>
+                                {
+                                    ((1 === postcomment["is_active"]) && (0 === postcomment["reaction"]))?
+                                        <ThumbDownOffAltOutlinedIcon style={selectediconStyle} />:
+                                        <ThumbDownOffAltOutlinedIcon style={iconStyle} />
+                                }
+                            </IconButton>
+                            <br/>
+                            <span className='viewpostreplycomment_thumbup_count'>{commenetslikesState.dislike_count}</span>
+                        </>
+                        <IconButton onClick={() => handleCommentState(EnumPostCommentType.replyReplyPost)}>
+                            <ReplyIcon />
+                        </IconButton>
+                    </div>
+                    <>
+                        {
+                            (EnumPostCommentType.replyReplyPost === posttype) &&
+                            <PostCommentComponent postcomment={updatedpostcomment} posttype = {posttype}/>
+                        }
+                    </>
+                </div>
+            </div>
+        }
+        {
+            (EnumPostCommentType.editReplyPost === posttype)&&
+            <>
+                <summary>Edit Post Comment</summary>
+                <PostCommentComponent postcomment={updatedpostcomment} posttype={posttype}/>
+            </>
+        }
+    </div>
+  )
+}
+
+export default ViewReplyPostCommentComponent

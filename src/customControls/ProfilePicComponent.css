@@ -1,0 +1,47 @@
+
+.profile_pic {
+    width: 78px;
+    height: 78px;
+    /* border: 1px solid red; */
+}
+
+.pic_container{
+    position: absolute;
+    border-radius: 100px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 78px;
+    height: 78px;  
+    background: gray;
+}
+
+.profile_pic_remove{
+    font-size: 30px;
+    margin-top: 40px;
+    margin-left: 50px;
+    z-index: 1;
+    position: relative;
+    color: white;
+}
+.camera_icon {
+   font-size: 30px;
+   margin-top: 40px;
+   margin-left: 58px;
+   z-index: 1;
+   position: relative;
+}
+
+.file_ctrl {
+    display: none;
+}
+
+.profile_img {
+    position: absolute;
+    border-radius: 100px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    width: 78px;
+    height: 78px;  
+}

@@ -1,0 +1,34 @@
+
+
+
+
+.crop_pic_icons_row{
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    /* border: 1px solid black; */
+    /* margin-left: -20px; */
+}
+
+.crop_row {
+    border-radius: 30px;
+}
+
+.crop_table {
+    /* style={{height: "120px"}} */
+    height: 120px;
+}
+
+.crop_div_confirmation_buttons {
+    display: flex;
+    /* border: 1px solid red; */
+    justify-content: right;
+    margin-top: 10px;
+}
+
+.pic_crop_cofirmation_btns{
+    /* style={{fontSize: "10px", height: "25px", textAlign: "center"}} */
+    font-size: 10px;
+    height: 25px;
+    text-align: center;
+}

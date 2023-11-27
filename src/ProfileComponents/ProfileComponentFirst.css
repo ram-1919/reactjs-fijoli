@@ -1,0 +1,170 @@
+
+.signupformFinal-container-pcf {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.table_container-pcf {
+    width: 100%;
+}
+
+
+.table_container-certification_pcf {
+    width: 100%;
+    /* border: 2px solid red; */
+    padding: 2px;
+    margin-top: 3px;
+    margin-bottom: 6px;
+    margin: 0 auto;
+}
+
+.display_middle_pcf {
+    text-align: center;
+}
+
+.table_container_pricing_pcf {
+    width: 100%;
+    /* border: 2px solid red; */
+    /* padding: 2px; */
+    margin-top: 3px;
+    margin-bottom: 6px;
+    /* margin: 0 auto; */
+    margin-left: 3px;
+}
+
+.table_container_pricing_pcf_hidden{
+    width: 100%;
+    /* border: 2px solid red; */
+    /* padding: 2px; */
+    margin-top: 3px;
+    margin-bottom: 6px;
+    /* margin: 0 auto; */
+    margin-left: 3px;
+    visibility: hidden; 
+}
+
+.table_container-complete-pcf {
+    width: 90%;
+    /* border: 2px solid red; */
+    padding: 2px;
+    margin-top: 3px;
+    margin-bottom: 6px;
+    margin: 0 auto;
+    height: 40px;
+}
+
+.currentlyNotTraining-pcf {
+    margin-left: 0px;
+}
+
+.image-main-final{
+    height:200px;
+    background: url("./../asset/img1.jpg");
+    margin-top: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.text-align {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.checkbox-align{
+    margin-left: 25px;
+    margin-bottom: 5px;
+}
+
+.text-align-para {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: -5px;
+}
+
+.button_oval_style_submit-pf {
+    background-color:#E50F32;
+    color:white;
+    border: 1px;
+    border-radius:35px/25px;
+    width: 125px;
+    height: 24px;
+    cursor: pointer;
+    margin: 0 auto;
+    display: block;
+    margin-bottom: 15px;
+    /* font-family: 'Courier New', Courier, monospace; */
+}
+
+.training-options-div {
+    margin-left: 25px;
+}
+
+.table_pricing_first_col_pcf {
+    width: 95%;
+    border-radius: 10px;
+    text-align: center;
+    height: 25px;
+    background: white;
+    color: black;
+    /* font-size:1em; */
+}
+
+.table_pricing_second_col_pcf {
+    width: 84%;
+    border-radius: 10px;
+    text-align: center;
+    height: 25px;
+    background: white;
+    color: black;
+    text-align: left;
+}
+
+.table_pricing_third_col_pcf {
+    width: 84%;
+    border-radius: 10px;
+    text-align: center;
+    height: 25px;
+    background: white;
+    color: black;
+    text-align: left;
+}
+
+.display_left_checkbox_pcf {
+    margin-left: 0px;
+}
+
+.checkbox_col_pcf {
+    width: 6%;
+}
+
+.css-14s5rfu-MuiFormLabel-root-MuiInputLabel-root{
+    overflow: visible !important;
+    line-height: .1em !important;
+}
+
+.payment_heading_pcf{
+    background: gray;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    height: 25px;
+    width: 124px;
+    border: 1px solid;
+}
+
+.payment_heading_pcf_cell {
+    text-align: center;
+}
+
+.currenct_select_pcf {
+    width: 55px;
+    margin-left: -56px;
+    border-radius: 10px;
+    height: 26px;
+}
+
+.currently_training_pcf {
+    border: none;
+}

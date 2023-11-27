@@ -1,0 +1,80 @@
+
+.signupformFinal-container-pcs {
+    margin: 0 auto;
+    width: 100%;
+}
+
+.table_container-pcs {
+    width: 100%;
+    /* border: 1px solid; */
+}
+
+.table_container-complete-pcs {
+    width: 90%;
+    /* border: 2px solid red; */
+    padding: 2px;
+    margin-top: 3px;
+    margin-bottom: 6px;
+    margin: 0 auto;
+    height: 40px;
+}
+
+.display_middle_pcs {
+    text-align: center;
+}
+
+.image-main-final{
+    height:200px;
+    background: url("./../asset/img1.jpg");
+    margin-top: 10px;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.text-align {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.checkbox-align{
+    margin-left: 25px;
+    margin-bottom: 5px;
+}
+
+.text-align-para {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    margin-top: -5px;
+}
+
+.table_container-certification_pcs {
+    width: 90%;
+    /* border: 2px solid red; */
+    padding: 2px;
+    margin-top: 3px;
+    margin-bottom: 6px;
+    margin: 0 auto;
+}
+
+
+.button_oval_style_submit_pcs {
+    background-color:#E50F32;
+    color:white;
+    border: 1px;
+    border-radius:35px/25px;
+    width: 125px;
+    height: 24px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+}
+
+.training-options-div {
+    margin-left: 25px;
+}
+
+.center-align-pcs {
+    margin: 0 auto;
+}

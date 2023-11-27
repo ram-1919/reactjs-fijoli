@@ -1,0 +1,41 @@
+.homepage-container {
+    margin: 0 auto;
+    width: 550px;
+    margin-top: 15px;
+    /* border: 1px solid red; */
+}
+
+.main_div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.title_table{
+    width: 100%;
+}
+
+.col_first {
+    width: 15%;
+}
+
+.col_second {
+    width: 65%;
+}
+
+.col_third {
+    width: 10%;
+    text-align: right;
+}
+
+.col_fourth {
+    width: 10%;
+}
+
+.home-line
+{
+    height:3px;
+    width: 100%;
+    background-color:black;
+    margin-top:15px;
+}
