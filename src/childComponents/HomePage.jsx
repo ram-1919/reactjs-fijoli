@@ -25,7 +25,7 @@ const HomePage = () =>{
   const [displaymsg, setdisplaymsg]       = useState({});
   
 
-  const lstofItems        = useSelector(state => state.storeComponent.items);
+  const lstofItems        = useSelector(state => state.storeComponent.configData.postItems);
   const navigateItemtype  = useSelector((state) => state.storeComponent.navigateItemType);
   const loggedInUserInfo  = useSelector((state) => state.storeComponent.configData.profileData);
   
@@ -38,7 +38,7 @@ const HomePage = () =>{
   },[errormsgstate]);
 
   useEffect(()=>{
-    dispatch({type: "getFijoliItems"});
+    // dispatch({type: "getFijoliItems"});
     dispatch(navigateItem(EnumNavigate.homepageState));
   },[]);
 
@@ -74,9 +74,9 @@ const HomePage = () =>{
         </>
         <>
         {
-          (navigateItemtype === EnumNavigate.homepageState) && (undefined != lstofItems) && (lstofItems.length) &&
-          lstofItems.map((item, index)=>{
-            return (<FijoliItems key={index} data={item} ></FijoliItems>)
+          (navigateItemtype === EnumNavigate.homepageState) && (undefined != lstofItems) && (Object.keys(lstofItems).length) &&
+          Object.keys(lstofItems).map((item, index)=>{
+            return (<FijoliItems key={index} categoryName={item} data={lstofItems[item]} ></FijoliItems>)
           })
         }
         </>

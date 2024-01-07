@@ -38,7 +38,7 @@ const SignUpFormFinal = () =>{
 
     const userInfo              = useSelector((state)=> state.storeComponent.configData.profileData);
     const lstoftrainingtypes    = useSelector((state)=> state.storeComponent.configData.user_category);
-    const confirmRegState       = useSelector((state)=> state.storeComponent.confirmRegState);
+    const confirmRegState       = useSelector((state)=> state.storeComponent.loginState);
 
     useEffect(()=>{
         if(confirmRegState){

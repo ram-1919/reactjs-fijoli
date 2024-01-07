@@ -1,6 +1,6 @@
 
 
-import {  Backdrop, Button, IconButton, Paper, Slide, Snackbar, Tab, Tabs, TextField } from '@mui/material';
+import {  Backdrop, Button, IconButton, Paper, Slide, Snackbar, Tab, Tabs, TextField, Tooltip } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 import ProfilePicComponent from '../customControls/ProfilePicComponent'
 import fitnesstrainer      from "./../asset/trainer.jpg";
@@ -79,6 +79,8 @@ const SelfProfile =() =>{
 
         //other userinfo holds either loggedinUser/other user
         if(otherUserInfo){
+            let picinfo = process.env.REACT_APP_S3_URL + otherUserInfo["whatsapp_number"]+  "/profilepic/"+ otherUserInfo["whatsapp_number"]+ "_" + "profilepic_";
+            setprofilepic(picinfo);
             //holds the state of loggerin user or not
             otherUserInfo["isLoggedInUser"]     = (otherUserInfo.user_id === loggedInUserinfo.user_id);
 
@@ -318,12 +320,16 @@ const SelfProfile =() =>{
                                     <td>
                                         {
                                             (otherUserInfo.isblocked)?
+                                            <Tooltip title="unblock">
                                             <IconButton onClick={handleBlockUserState}>
                                                 <BlockIcon className='selfprofile_div_table_block_icon' sx = {{ color : "red" }}/>
-                                            </IconButton>:
+                                            </IconButton>
+                                            </Tooltip>:
+                                            <Tooltip title="block">
                                             <IconButton onClick={handleBlockUserState}>
                                                 <BlockIcon className='selfprofile_div_table_block_icon' />
                                             </IconButton>
+                                            </Tooltip>
                                         }
                                     </td>
                                 </tr>

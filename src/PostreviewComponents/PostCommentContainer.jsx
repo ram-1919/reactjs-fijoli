@@ -15,12 +15,12 @@ import clearpostcommentsAction from './Actions/clearpostcommentsAction';
 // logged_in_user_id : user_id of logged in person
 // main post comment container
 ///</summary>
-const PostCommentContainer = ({post_id, logged_in_user_id}) =>{
+const PostCommentContainer = ({post_id, logged_in_user_id, post_category}) =>{
  
   const dispatch    = useDispatch();
   //post new review comment memoized
   const memoizedpostnewComment  = useMemo(()=> {
-    return PostCommentsController.getNewPostComment(post_id, logged_in_user_id);
+    return PostCommentsController.getNewPostComment(post_id, post_category, logged_in_user_id);
   },[post_id]);
 
   const lstofpostcomments = useSelector((state)=>{
@@ -33,7 +33,7 @@ const PostCommentContainer = ({post_id, logged_in_user_id}) =>{
   useEffect(()=>{
     console.log("use Effect for postreview container");
     if(undefined === lstofpostcomments){
-      dispatch(getpostCommentAction(post_id, logged_in_user_id));
+      dispatch(getpostCommentAction(post_id, post_category, logged_in_user_id));
     }
     return(()=>{
       dispatch(clearpostcommentsAction(post_id));

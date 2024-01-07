@@ -4,6 +4,8 @@
   "private": true,
   "dependencies": {
     "@coreui/react": "^4.9.2",
+    "@draft-js-plugins/editor": "^4.1.4",
+    "@draft-js-plugins/mention": "^5.2.2",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@material-ui/icons": "^4.11.3",
@@ -14,11 +16,13 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
+    "draft-js": "^0.11.7",
     "mapbox-gl": "^2.15.0",
     "react": "^18.2.0",
     "react-avatar-editor": "^13.0.0",
     "react-dom": "^18.2.0",
     "react-map-gl": "^7.1.6",
+    "react-mentions": "^4.4.10",
     "react-places-autocomplete": "^7.3.0",
     "react-redux": "^8.1.2",
     "react-router-dom": "^6.14.2",
@@ -27,13 +31,15 @@
     "react-simple-star-rating": "^5.1.7",
     "redux-saga": "^1.2.3",
     "saga": "^4.0.0-alpha",
+    "tunnelmole": "^2.2.13",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "start-public": "npm run start && tmole 3000"
   },
   "eslintConfig": {
     "extends": [
@@ -52,5 +58,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3"
   }
 }

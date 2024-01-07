@@ -27,7 +27,7 @@ const DisplayMessage = ({displayState, handleclose}) =>{
   return (
     <div>
         { 
-        (displayState) &&
+        (0 < Object.keys(displayState).length) &&
         <>
             <Snackbar
                     open={displayState.open}

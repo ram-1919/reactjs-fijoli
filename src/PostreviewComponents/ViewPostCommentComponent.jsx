@@ -39,6 +39,7 @@ const ViewPostCommentComponent= ({post_id, comment_id}) =>{
     const dispatch      = useDispatch();
     // const navigate      = useNavigate();
     console.log("post comment component ==>" + comment_id);
+    const [userpicinfo, setuserpicinfo]   = useState();
     const postcomment = useSelector((state)=>{
         return state.storeComponent.lstofPosts[post_id.toString()].comments[comment_id];
     });
@@ -46,6 +47,8 @@ const ViewPostCommentComponent= ({post_id, comment_id}) =>{
     
     useEffect(()=>{
         setposttype(EnumPostCommentType.none);
+        let picpath = process.env.REACT_APP_S3_URL + postcomment["whatsapp_number"] + "/profilepic/" + postcomment["whatsapp_number"] + "_profilepic_";
+        setuserpicinfo(picpath);
     },[postcomment]);
 
     //reply comment objects 
@@ -116,7 +119,7 @@ const ViewPostCommentComponent= ({post_id, comment_id}) =>{
              (EnumPostCommentType.replyMainPost === posttype)))&&
             <div className="viewpostcomment_container">
                 <div className="viewpostcomment_header">
-                    <img src={img2} className="viewpostcomment_image_pic" />
+                    <img src={userpicinfo} className="viewpostcomment_image_pic viewpostcc_skeleton" />
                     <span className='viewpostcomment_username'>{postcomment.user_name}</span><br/>
                 </div>
 
@@ -143,8 +146,11 @@ const ViewPostCommentComponent= ({post_id, comment_id}) =>{
                         <IconButton onClick={() => handleCommentState(EnumPostCommentLikeDisliketype.like)}>
                             {
                               ((1 === postcomment.is_active) && (1 === postcomment.reaction))?
-                                <ThumbUpOutlinedIcon style = {selectediconStyle} />:
-                                <ThumbUpOutlinedIcon style = {iconStyle}/>
+                              <img src={"/categoryImages/rheart.svg"} className="viewpostcc_image_pic" /> :
+                              <img src={"/categoryImages/lheart.svg"} className="viewpostcc_image_pic" />
+
+                                // <ThumbUpOutlinedIcon style = {selectediconStyle} />:
+                                // <ThumbUpOutlinedIcon style = {iconStyle}/>
                             }
                         </IconButton>
                         <br/>
@@ -154,8 +160,11 @@ const ViewPostCommentComponent= ({post_id, comment_id}) =>{
                         <IconButton onClick={() => handleCommentState(EnumPostCommentLikeDisliketype.dislike)}>
                             {
                               ((1 === postcomment.is_active) && (0 === postcomment.reaction))?
-                                <ThumbDownOffAltOutlinedIcon style = {selectediconStyle} />:
-                                <ThumbDownOffAltOutlinedIcon style = {iconStyle}/>
+                              <img src={"/categoryImages/rDislikeheart.svg"} className="viewpostcc_image_pic" /> :
+                              <img src={"/categoryImages/heart.svg"} className="viewpostcc_image_pic" />
+
+                            //   <ThumbDownOffAltOutlinedIcon style = {selectediconStyle} />:
+                            //     <ThumbDownOffAltOutlinedIcon style = {iconStyle}/>
                             }
                         </IconButton>
                         <br/>

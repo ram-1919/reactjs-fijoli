@@ -4,7 +4,7 @@ import React from 'react'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import clearpostsAction from '../actions/clearpostsAction';
-import ViewPostComponent from './ViewPostComponent'
+import ViewPostComponent from './ViewPostComponent';
 
 const PostContainer = () =>{
 

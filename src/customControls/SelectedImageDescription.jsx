@@ -1,6 +1,6 @@
 
 
-import { Button, Dialog, DialogContent, DialogTitle, IconButton } from '@mui/material';
+import { Avatar, Button, Dialog, DialogContent, DialogTitle, IconButton, Skeleton } from '@mui/material';
 import React from 'react'
 import { useState } from 'react';
 
@@ -101,48 +101,36 @@ const SelectedImageDescription = ({opendialog, documentinfo, dlgTitle, emitdocum
                 }}}>
             <DialogTitle textAlign="center">{dlgTitle}</DialogTitle>
             <DialogContent>
-                <table className='select_description_main_table'>
-                    <tr>
-                        <td className='select_description_img_row'>
-                           {
-                                (null === certificationInfo.image)?
-                                <label className='select_description_container' >
-                                    <center>
-                                    <PersonIcon sx={{fontSize: "120px"}} />
-                                    </center>
-                                </label>
-                                :
-                                <label className='select_description_pdf_container' >
-                                    <PictureAsPdfIcon sx={{fontSize: "120px"}} />
-                                </label>
-                           }
-                            <div className='description_filename_div'>
-                                <input  type="text" 
-                                        value={filename}
-                                        placeholder='selected file name' readOnly="true"
-                                        style={{borderRadius: "5px", borderColor: 'black', width: "95%", height: "20px" }}/>
+                <div style={{display: "flex", alignItems: "center"}}>
+                    <div style={{border: "1px solid black" , width:"28%", borderRadius: "10px"}}>
+                        {
+                            (null === certificationInfo.image)?
+                            <Skeleton variant="circular" textAlign="center"
+                                    animation="wave" width={100} height={100} />
+                            :
+                            <div className='select_description_pdf_container'>
+                                <PictureAsPdfIcon sx={{fontSize: "50px"}} />
                             </div>
-                            <div  className='description_icons_div'>
-                                <IconButton disabled = {disableState}>
-                                    <UploadIcon className='select_pic_icon' onClick={handleuploadfile}  />
-                                </IconButton>
-                                {/* <IconButton disabled = {!disableState}>
-                                    <RestartAltIcon className="select_pic_icon" 
-                                                onClick={handleRemoveCertificate}/>
-                                </IconButton>  */}
-                                <IconButton disabled = {!disableState}>
-                                    <DeleteForeverIcon className='select_pic_icon' 
-                                                onClick = {handledeleteForever}/>
-                                </IconButton>
-                            </div>
-                        </td>
-                        <td className='select_description_row'>
-                           <AboutMyselfComponent height = "200px"
-                                document_desc = {certificationInfo.document_desc}
-                                handletxtChanged = {handletxtChanged}/>
-                        </td>
-                    </tr>
-                </table>
+                        }
+                        <br/>
+                        <div  className='description_icons_div'>
+                                    <IconButton disabled = {disableState}>
+                                        <UploadIcon className='select_pic_icon_sff' onClick={handleuploadfile}  />
+                                    </IconButton>
+                                    <IconButton disabled = {!disableState}>
+                                        <DeleteForeverIcon className='select_pic_icon_sff' 
+                                                    onClick = {handledeleteForever}/>
+                                    </IconButton>
+                                </div>
+
+                    </div>
+                    <div style={{border: "1px solid black" , width:"72%", borderRadius: "10px"}}>
+                        <AboutMyselfComponent height = "100px"
+                                    document_desc = {certificationInfo.document_desc}
+                                    handletxtChanged = {handletxtChanged}/>
+                    </div>
+                </div>
+                
                 <div className='select_description_okcancel_div'   >
 
                     <Button variant='outlined'
@@ -156,6 +144,7 @@ const SelectedImageDescription = ({opendialog, documentinfo, dlgTitle, emitdocum
                             onClick={handleOkClick}>OK</Button>
 
                 </div>
+
             </DialogContent>
         </Dialog>
         {

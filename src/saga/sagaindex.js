@@ -135,13 +135,17 @@ const getData= (queryType, data) =>{
             response = serv.getlstPosts(data).then((result)=> result);
             break;
 
+        case "get_selected_post_category":
+            response = serv.getlstPostcategory(data).then((result)=> result);
+            break;
+
         case "get_other_profile":
             response = serv.getotherProfile(data).then((result)=> result);
             break;
         
-        case "get_post_comments":
-            response = serv.getPostComments(data).then((result)=>result);
-            break;
+        // case "get_post_comments":
+        //     response = serv.getPostComments(data).then((result)=>result);
+        //     break;
 
         case "get_submitter_reviews":
             response = serv.getSubmitterReviews(data).then((result)=>result);
@@ -245,10 +249,17 @@ function* invokeLogin(action){
     const resp      = yield call(getData, "login", action.loginData);
     const result    = JSON.parse(JSON.stringify(resp.data));
 
-    yield put({
-        type: "invoke_login_success",
-        result
-    })   
+    if(200 !== resp.data.status){
+        yield put({
+            type: "error_occurred",
+            data: "error occurred while loging in... please retry again..."
+        })   
+    }else{
+        yield put({
+            type: "invoke_login_success",
+            result
+        })   
+    }
 
 }
 
@@ -277,7 +288,7 @@ function* confirmRegistration(action){
 
     yield put({
         type: "confirmRegistration_success",
-        data: response
+        result: response
     })   
 }
 
@@ -403,6 +414,32 @@ function* actiongetposts(){
     yield takeLatest("get_post", getposts)
 }
 
+function* getselectedpostcategory(action){
+
+    const resp = yield call(getData, "get_selected_post_category", action);
+    const response = JSON.parse(JSON.stringify(resp.data));
+   //resp.data.status
+   if(0 === Object.keys(response).length){
+        yield put({
+            type: "error_occurred",
+            data: "No posts exists"
+        })
+   }else if(200 !== resp.status){
+        yield put({
+            type: "error_occurred",
+            data: "Error occurred while getting posts"
+        })   
+   }else{
+       yield put({
+           type: "get_selected_post_category_success",
+           data: response
+       })   
+   }
+}
+
+function* actiongetselectedpostcategory(){
+    yield takeLatest("get_selected_post_category", getselectedpostcategory)
+}
 
 function* getsubmitterReviews(action){
 
@@ -516,10 +553,17 @@ function* deletepost(action){
     const resp = yield call(postAPI, action.postinfo, "delete_post");
     const response = JSON.parse(JSON.stringify(resp.data));
 
-    yield put({
-        type: "delete_post_success",
-        data: response
-    })   
+    if(200 !== response.status){
+        yield put({
+            type: "edit_post_error_occurred",
+            data: "error occurred while performing like/dislike"
+        })
+    }else {
+        yield put({
+            type: "delete_post_success",
+            data: response
+        }) 
+    } 
 }
 
 function* actiondeletepost(){
@@ -602,7 +646,7 @@ function* getpostcomments(action){
     const resp = yield call(getData, "get_post_comment", action);
     const lstofComments = JSON.parse(JSON.stringify(resp.data))
 
-    if(200 != resp.status){
+    if(200 !== resp.status){
         yield put({
             type: "error_occurred",
             data: "Failed to get post comments"
@@ -624,7 +668,7 @@ function* getreplypostcomments(action){
     const resp = yield call(getData, "get_reply_post_comments", action);
     const response = JSON.parse(JSON.stringify(resp.data))
 
-    if(200 != resp.status){
+    if(200 !== resp.status){
         yield put({
             type: "error_occurred",
             data: "Failed to get post comments"
@@ -648,7 +692,7 @@ function* postlikestate(action){
     const resp = yield call(postAPI, action.postState, "post_like_dislike");
     const response = JSON.parse(JSON.stringify(resp.data));
 
-    if(200 != response.status){
+    if(200 !== response.status){
         yield put({
             type: "error_occurred",
             data: "error occurred while performing like/dislike"
@@ -671,7 +715,7 @@ function* postcommentlikedislikestate(action){
     const resp = yield call(postAPI, action.postcommentldState, "post_comment_like_dislike_state");
     const response = resp.data;
 
-    if(200 != resp.status){
+    if(200 !== resp.status){
         yield put({
             type: "error_occurred",
             data: "failed to update like/dislike state"
@@ -694,7 +738,7 @@ function* replypostcommentlikedislikestate(action){
     const resp = yield call(postAPI, action.postcommentldState, "reply_post_comment_like_dislike_state");
     const response = resp.data;
 
-    if(200 != resp.status){
+    if(200 !== resp.status){
         yield put({
             type: "error_occurred",
             data: "failed to update like/dislike state"
@@ -783,7 +827,7 @@ function* hidePost(action){
 
     yield put({
         type: "post_hide_success",
-        data: response
+        data: action.posthideData
     })   
 }
 
@@ -933,7 +977,8 @@ export default function* rootSaga() {
         actiongetfollowinglist(),
         actiongetsearchpost(),
         actiongetsearchpostitem(),
-        actionreplypostcommentlikedislikestate()
+        actionreplypostcommentlikedislikestate(),
+        actiongetselectedpostcategory()
     ]);
 }
   

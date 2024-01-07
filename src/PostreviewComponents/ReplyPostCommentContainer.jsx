@@ -21,7 +21,8 @@ const ReplyPostCommentContainer=({post_id, id, logged_in_user_id})=> {
 
     useEffect(()=>{
 
-        if(undefined === lstofpostreplycomments){
+        if((undefined === lstofpostreplycomments) || 
+           (0 === Object.keys(lstofpostreplycomments).length)){
             dispatch(getreplypostCommentsAction(id, post_id, logged_in_user_id));
         }
 

@@ -1,8 +1,14 @@
 import React from 'react'
 import successimage from './../asset/success.png'
 import "./SuccessComponent.css";
+import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux';
 
 export const SuccessComponent = () =>{
+
+  const registrationState          = useSelector((state)=>state.storeComponent.registrationState);
+  const navigatelink  = process.env.REACT_APP_FIJOLI_URL + "signupform2?whatsapp_number=" + registrationState.whatsapp_number;
+
   return (
     <div className='success_header_container'>
         <span className='label_header_h1'>
@@ -21,7 +27,9 @@ export const SuccessComponent = () =>{
         <div style={{display:"flex", alignItems:"center", justifyContent:"center"}}>
             <img src={successimage}  width="450" height="350"/>
         </div>
-
+        <center>
+          <Link to={navigatelink}>Click here to Signup</Link>
+        </center>
     </div>
   )
 }

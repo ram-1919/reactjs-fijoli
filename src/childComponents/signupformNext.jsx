@@ -193,7 +193,7 @@ const SignUpFormNext = () =>{
                 <div className="text-align-items">
                     <Select displayEmpty value={registrantInfo.user_category} 
                         onChange={handleSelect} 
-                        style={{height: "30px", width: "100%", alignItems: "center", justifyContent: "center"}}>
+                        style={{height: "30px", borderRadius: "15px", width: "100%", alignItems: "center", justifyContent: "center"}}>
                         <MenuItem value="" disabled>Who am I</MenuItem>
                         {
                             lstoftrainers.map((item, idx)=>{

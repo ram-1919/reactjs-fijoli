@@ -1,9 +1,11 @@
+import EnumNavigate from "../singletonControllers/NavigateController";
 
 
-const getPostItemsAction = (user_id) => {
+const getPostItemsAction = (item) => {
     return{
-      type: "get_post",
-      user_id
+      type: "get_post_success",
+      "data" : item,
+      "navigateItemTo" : EnumNavigate.postContainer
     }
   }
 

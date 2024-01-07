@@ -1,12 +1,9 @@
 
 
-import { DisabledByDefault } from '@mui/icons-material';
-import { Avatar, Box, Skeleton, Typography } from '@mui/material';
-import { isDisabled } from '@testing-library/user-event/dist/utils';
 import React from 'react'
 import { useState } from 'react';
 import { useEffect } from 'react';
-// import PropTypes from 'prop-types'
+import { Avatar, Box, Skeleton, Typography } from '@mui/material';
 
 
 const FollowUserInfo = ({whatsapp_number, user_name}) =>{
@@ -49,11 +46,6 @@ const FollowUserInfo = ({whatsapp_number, user_name}) =>{
     </div>
   )
 }
-
-// FollowUserInfo.propTypes = {
-//     whatsapp_number : PropTypes.string,
-//     userinfo        : PropTypes.object
-// };
 
 export default FollowUserInfo;
 

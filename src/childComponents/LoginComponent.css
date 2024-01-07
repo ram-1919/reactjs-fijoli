@@ -1,8 +1,6 @@
 .image-main{
     height:450px;
-    background: url("./../asset/image1.jpg");
-    border-bottom-left-radius: 210px;
-    border-bottom-right-radius: 210px;
+    background: url("./../asset/login.png");
     margin-top: 10px;
     background-size: cover;
     background-repeat: no-repeat;

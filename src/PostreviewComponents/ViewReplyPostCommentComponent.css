@@ -48,6 +48,7 @@
     border: none;
     width: 30px;
     margin-top: 8px;
+    margin-left: 10px;
 }
 
 .viewpostreplycomment_body {
@@ -60,4 +61,25 @@
 
 .viewpostreplycomment_icons {
     display: flex;
+}
+
+.viewreplypostcc_skeleton {
+    opacity: .7;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading{
+    0%{
+        background-color: hsl(200, 20%, 70%);
+    }
+
+    100%{
+        background-color: hsl(200, 20%, 95%);
+    }
+}
+
+.viewreplypostcc_image_pic {
+    width: 15px;
+    height: 15px;
+    cursor: pointer;
 }

@@ -6,9 +6,7 @@
 }
 
 .image-main-firstform{
-    background: url("./../asset/img6.jpg");
-    border-bottom-left-radius: 210px;
-    border-bottom-right-radius: 210px;
+    background: url("./../asset/signup.png");
     margin-top: 3px;
     background-size: cover;
     background-repeat: no-repeat;

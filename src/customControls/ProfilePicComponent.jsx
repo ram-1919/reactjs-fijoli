@@ -1,6 +1,5 @@
 import "./ProfilePicComponent.css"
 import React, { useState } from 'react'
-
 import PersonIcon from '@mui/icons-material/Person';
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
@@ -13,8 +12,15 @@ const ProfilePicComponent = (props) => {
   //set default values 
   const [opendlgstate,    setopendlgstate]        = useState(false);
   const [profilepicInfo, setprofilepicInfo]   = useState(null);
-  const [previewImg,     setpreviewImg]       = useState(null);
+  const [previewImg,     setpreviewImg]       = useState("");
   const [removedlgstate, setremovedlgstate ]  = useState(false);
+
+  useEffect(()=>{
+    if(props.profilepic){
+      setprofilepicInfo(props.profilepic)
+      setpreviewImg(props.profilepic);
+    }
+  },[props]);
 
   //useEffect which updates pic to parent component
   useEffect(()=>{
@@ -80,7 +86,7 @@ const ProfilePicComponent = (props) => {
           </>
             :
           <>
-              <img src={previewImg} className='profile_img'/>
+              <img src={previewImg} className='profile_img skeleton'/>
               <PersonRemoveIcon className='profile_pic_remove' onClick={handleRemoveProfilePic}/>
           </>  
       }

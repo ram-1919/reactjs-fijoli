@@ -59,6 +59,15 @@ class SysConfigData{
     getRegisteredUserInfo() {
         return this.result.profileData;
     }
+
+    //return list of users
+    getlstofUsers(){
+        return this.result.lstofusers;
+    }
+
+    getlstofPostItems() {
+        return this.result.lstofpostsinfo;
+    }
 }
 
 export default SysConfigData;

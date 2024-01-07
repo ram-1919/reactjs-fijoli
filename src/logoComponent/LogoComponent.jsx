@@ -9,7 +9,7 @@ const LogoComponent = () =>{
 
   return (
     <div>
-{/* <div className="container">
+<div className="container">
       <div className="brand">
 
      
@@ -20,7 +20,7 @@ const LogoComponent = () =>{
       
 
       </div>
-    </div> */}
+    </div>
 
     </div>
   )

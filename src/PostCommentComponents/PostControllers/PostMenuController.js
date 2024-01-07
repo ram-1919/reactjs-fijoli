@@ -1,3 +1,5 @@
+import EnumNavigate from "../../singletonControllers/NavigateController";
+import EnumPostMenuOptions from "./PostMenuOptions";
 
 
 class PostMenuController {
@@ -8,7 +10,7 @@ class PostMenuController {
             "showConfirmationDlg" : true,
             "confirmationMessage" : "Are you sure to delete the post?",
             "menuOptions"         : ["No", "Yes"],
-            "postmenutype"        : "delete"
+            "postmenutype"        : EnumPostMenuOptions.Delete
         };
     }
 
@@ -17,7 +19,7 @@ class PostMenuController {
             "showConfirmationDlg" : true,
             "confirmationMessage" : confirmationMsg,
             "menuOptions"         : ["No", "Yes"],
-            "postmenutype"       : "hide"
+            "postmenutype"       : EnumPostMenuOptions.Hide
         }
     }
 
@@ -30,7 +32,7 @@ class PostMenuController {
     static getPostConfirmation(){
         return{
             "showConfirmationDlg" : true,
-            "postmenutype"        : "report"
+            "postmenutype"        : EnumPostMenuOptions.Report
         }
     }
 
@@ -38,7 +40,8 @@ class PostMenuController {
         return {
             "user_id" : postitem.logged_in_user_id,
             "post_id" : postitem.id,
-            "is_active" : 1
+            "is_active" : 1,
+            "post_category" : postitem.post_category
         }
     }
 

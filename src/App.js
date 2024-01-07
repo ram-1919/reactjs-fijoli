@@ -15,11 +15,12 @@ import TempComponent from './tmpcomponents/TempComponent';
 import MenuComponent from './childComponents/MenuComponent';
 import ForgotPasswordComponent from './LoginLogout/ForgotPasswordComponent';
 import CreatePasswordComponent from './LoginLogout/CreatePasswordComponent';
+import DisplayUsers from './tmpcomponents/DisplayUsers';
 // import SelfProfile from './Profile/SelfProfile';
 // import ViewPostCommentComponent from './PostCommentComponents/ViewPostCommentComponent';
 // import ProfilepicSelectionComponent from './profilepiccontrols/ProfilepicSelectionComponent';
 // import PostCommentContainer from './PostCommentComponents/PostCommentContainer';
-// import LogoComponent from './logoComponent/LogoComponent';
+import LogoComponent from './logoComponent/LogoComponent';
 
 
 class App extends Component {
@@ -35,6 +36,7 @@ class App extends Component {
           {/* <Route exact path="/" element={<LogoComponent/>} /> */}
           {/* <Route exact path="/" element={<TempComponent/>} /> */}
           <Route exact path="/" element={<LandingPage/>} />
+          <Route exact path="/users" element={<DisplayUsers/>} />
           <Route exact path="/signupform1" element={<SignUpFormFirst/>} />
           <Route exact path="/signupform2" element={<SignupformNext/>} />
           <Route exact path="/loginpage" element={<LoginComponent/>} />

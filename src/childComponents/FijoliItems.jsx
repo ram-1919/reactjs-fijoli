@@ -1,10 +1,9 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { IconButton, Skeleton } from '@mui/material';
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
 import getPostItemsAction from '../actions/getPostItemsAction';
-import navigateItem from '../actions/navigateItemAction';
-import EnumNavigate from '../singletonControllers/NavigateController';
 import "./FijoliItems.css";
+import KeyboardArrowRightIcon from '@mui/icons-material/KeyboardArrowRight';
 
 ///<summary>
 // home page category post items component
@@ -12,47 +11,53 @@ import "./FijoliItems.css";
 const FijoliItems = (props) =>{
 
     const dispatch            = useDispatch();
-    const navigate            = useNavigate();
+    const [postitems, setpostitems] = useState([]);
+    const [indexRange, setindexRange]   = useState({min:0, max:5});
+    
 
-    const userinfo  = useSelector((state)=> state.storeComponent.configData.profileData);
-
-    const handleuploadbtnClick = (evt, selectedItem) =>{
-        if(userinfo){
-
-            dispatch(getPostItemsAction(userinfo.user_id));
+    useEffect(()=>{
+        setpostitems(props.data.slice(indexRange.min, indexRange.max));
+    },[indexRange]);
+    
+    const handleDisplayPost = (selectedItem) =>{
+        if(selectedItem){
+            // dispatch(getPostItemsAction(userinfo.user_id));
+            dispatch(getPostItemsAction({[selectedItem.id] : selectedItem}))
             //navigate to page which displays post comment info
-            dispatch(navigateItem(EnumNavigate.postContainer));
-        }else{
-            navigate("/");
+            // dispatch(navigateItem(EnumNavigate.postContainer));
         }
+    }
+
+    const handleNext = () =>{
+        let min = indexRange.max;
+        setindexRange({min:5, max:5});
     }
 
   return (
     <div className='fijoli_main-container'>
         <div style={{marginLeft: "30px"}}>
-            <img src='' alt=""/>
-            <label>{props.data.key}</label>
+            <img src={"/categoryImages/" + props.categoryName + ".svg"} alt={props.data.key}/>
+            <span style={{marginLeft: "10px", color: 'grey', fontWeight: 'bold'}}>{props.categoryName}</span>
         </div>
         <br/> 
-        <div style={{marginLeft: "45px"}}>
+        <div style={{marginLeft: "35px"}}>
             {
-                props.data.items.map((item, idx)=>{
-                    let imgsrc = "/images/img" + (Math.floor(Math.random() * 4) + 1) +".jpg";
+                (0 === postitems.length)?
+                <Skeleton variant="circular" textAlign="center"
+                        animation="wave" width={90} height={90} style={{cursor: "pointer", border: "1px solid black" }} />
+                :postitems.map((postitem, idx)=>{
+                    let imgsrc = process.env.REACT_APP_S3_URL + postitem.post_pic_1_path;
                     return (
-                        <span key={idx}>
-                            <button id="idx" key={idx} style={{width: "70px", cursor: "pointer",
-                                     height: "70px", borderRadius: "50px"}} 
-                                     onClick={(evt)=>handleuploadbtnClick(evt, {"id": item.id, "index": idx})} >
-                                <img src={imgsrc}  key={idx}
-                                    style={{marginLeft:"-9px", marginTop:"-3px",  width: "70px", height: "70px", borderRadius: "50px"}} 
+                        <IconButton onClick={()=>handleDisplayPost(postitem)}>
+                            <img src={imgsrc} className="post_icon fijoli_skeleton" 
                                     alt="uploadfiles..."/>
-                            </button>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        </span>
+                        </IconButton>
                     )
                 })
             }
-     
+            <IconButton onClick={handleNext}>
+                <KeyboardArrowRightIcon/>
+            </IconButton>
         </div>
     </div>
   )

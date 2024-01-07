@@ -5,7 +5,7 @@
 
 .image-main-Next{
     height:360px;
-    background: url("./../asset/signup-page-2.jpg");
+    background: url("./../asset/profile.png");
     margin-top: 10px;
     background-size: cover;
     background-repeat: no-repeat;
@@ -21,12 +21,7 @@
     position: absolute;
     width: 450px;
     height: 460px;
-    bottom: 0;
-    left: 50;
-    background-color: white;
-    border-top-left-radius: 30%;
-    border-top-right-radius: 30%;
-    border: 1px solid;
+    top: 310px;
 }
 
 

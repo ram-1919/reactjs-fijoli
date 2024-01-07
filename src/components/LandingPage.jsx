@@ -69,11 +69,11 @@ export const LandingPage = () => {
     },[])
 
     useEffect(()=>{
-        const interval = setInterval(()=>{
+       /*  const interval = setInterval(()=>{
             let slideVal = (slide === (lstofImages.length-1))?0:slide+1;
             setslide(slideVal);
         }, 3000);
-        return ()=> clearInterval(interval);
+        return ()=> clearInterval(interval); */
     },[slide])
     
 
@@ -118,7 +118,7 @@ export const LandingPage = () => {
                                     className="button_oval_style_login-lp"> Login </button>
                                 <div className="line-lp"></div>
                                 <button onClick={handlesignUpbtnClick} 
-                                    className="button_oval_style_login-lp">SignUp</button>
+                                    className="button_oval_style_login-lp">Sign Up</button>
                             </div>
 
                             <span className='indicators-lp'>

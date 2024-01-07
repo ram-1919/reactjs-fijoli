@@ -11,7 +11,7 @@ import TransformIcon from '@mui/icons-material/Transform';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
 import CancelIcon from '@mui/icons-material/Cancel';
 import RestartAltIcon from '@mui/icons-material/RestartAlt';
-import { Box, Button, Dialog, DialogContent, DialogTitle, IconButton, InputAdornment, TextField } from '@mui/material'
+import { Avatar, Box, Button, Dialog, DialogContent, DialogTitle, IconButton, InputAdornment, Skeleton, TextField } from '@mui/material'
 
 import ProfilepicCropComponent from './ProfilepicCropComponent';
 
@@ -110,66 +110,55 @@ const ProfilepicSelectionComponent = ({
   return (
     <div>
         <Dialog open={opendialog} PaperProps={{ style: {
-                    minHeight: '32%', minWidth:"25%", borderRadius: "10px"
+                    minHeight: '32%', minWidth:"18%", borderRadius: "10px"
                 }}}>
             <DialogTitle textAlign="center">Select Profile Pic</DialogTitle>
             <DialogContent>
-                <table className='select_pic_main_table'>
-                    <tr >
-                        <td className='select_pic_row' >
+                <div style={{border:"1px solid black", borderRadius:"10px"}}>
+                    {
+                        (null === picpreview)?
+                        <Skeleton variant="circular" 
+                                    animation="wave" width={120} height={120} />
+                        :
+                        <Avatar 
+                            src={picpreview}
+                            sx={{ width: 112, height: 112}}/>
+                    }
+                    <br/>
+                    <>
+                    {
+                        (!removePicState) &&
+                        <>
                             {
-                                (null === picpreview)?
-                                <label className='select_pic_container' >
-                                    <PersonIcon sx={{fontSize: "120px"}} />
-                                </label>
-                                :
-                                <img src={picpreview} 
-                                    className='select_profile_img'/>
+                            ((null === profilepicFile) || (undefined === profilepicFile)) &&
+                                <IconButton >
+                                    <UploadIcon className='select_pic_icon' onClick={handleuploadpicevent}  />
+                                </IconButton>
                             }
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className='select_pic_icons_row'>
-                            <>
-                            {
-                                (removePicState) &&
-                                <span> Are you sure to remove selected image?</span>
-                            }
-                            </>
-                            {
-                                (!removePicState) &&
-                                <>
-                                    {
-                                    ((null === profilepicFile) || (undefined === profilepicFile)) &&
-                                        <IconButton >
-                                            <UploadIcon className='select_pic_icon' onClick={handleuploadpicevent}  />
-                                        </IconButton>
-                                    }
 
-                                    {
-                                    ((null !== profilepicFile) && (undefined !== profilepicFile)) &&
-                                        <IconButton >
-                                            <PersonRemoveIcon className='select_pic_icon' onClick={handlepicremoveevent}/>
-                                        </IconButton>
-                                    }
-
-                                    {
-                                    (showcropIcons) &&                                    
-                                        <IconButton disabled={!disableState}>
-                                            <TransformIcon className='select_pic_icon' onClick={handleCropDlgLaunch}/>
-                                        </IconButton>
-                                    }
-                                    {
-                                    (showcropIcons) &&                                    
-                                        <IconButton disabled={!disableState}>
-                                            <RestartAltIcon className="select_pic_icon" onClick={handleResetevent}/>
-                                        </IconButton>
-                                    }
-                                </>
+                            {
+                            ((null !== profilepicFile) && (undefined !== profilepicFile)) &&
+                                <IconButton >
+                                    <PersonRemoveIcon className='select_pic_icon' onClick={handlepicremoveevent}/>
+                                </IconButton>
                             }
-                        </td>
-                    </tr>
-                </table>
+
+                            {
+                            (showcropIcons) &&                                    
+                                <IconButton disabled={!disableState}>
+                                    <TransformIcon className='select_pic_icon' onClick={handleCropDlgLaunch}/>
+                                </IconButton>
+                            }
+                            {
+                            (showcropIcons) &&                                    
+                                <IconButton disabled={!disableState}>
+                                    <RestartAltIcon className="select_pic_icon" onClick={handleResetevent}/>
+                                </IconButton>
+                            }
+                        </>
+                        }
+                    </>
+                </div>
                 <div className='select_pic_okcancel_div'  >
                     {
                         confirmbtnlst.map((item, index)=>{

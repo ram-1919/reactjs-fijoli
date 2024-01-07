@@ -4,13 +4,14 @@ import { SwipeTwoTone } from "@mui/icons-material";
 class PostCommentsController{
 
     //reply_id, post_id, post_user_id, comment_user_id, comment_desc
-    static getNewPostComment(post_id, logged_in_user_id){
+    static getNewPostComment(post_id,post_category, logged_in_user_id){
         return  {
             "reply_id"          : null,
             "post_id"           : post_id,
             "post_user_id"      : 0,
             "comment_user_id"   : logged_in_user_id,
-            "comment_desc"      : ""
+            "comment_desc"      : "",
+            "post_category"     : post_category
         };
     }
 
@@ -22,7 +23,8 @@ class PostCommentsController{
             "post_user_id"      : 0,
             "comment_user_id"   : postitem.logged_in_user_id,
             "comment_desc"      : postitem.comment_desc,
-            "main_post_id"      : postitem.root_reply_id
+            "main_post_id"      : postitem.root_reply_id,
+            "post_category"     : postitem.post_category
         };
     }
 

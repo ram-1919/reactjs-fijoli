@@ -1,9 +1,11 @@
 
+import { act } from "react-dom/test-utils";
 import PostCommentsController from "../Controllers/PostCommentsController";
 import initialState from "../models/initialState";
 import SysConfigData from "../models/sysConfigItems";
 import EnumNavigate from "../singletonControllers/NavigateController";
 import EnumPostCommentType from "../singletonControllers/PostReviewTypes";
+import StoreItemController from "./StoreItemController";
 
 export const storeComponent = (state = initialState, action) => {
 
@@ -13,37 +15,35 @@ export const storeComponent = (state = initialState, action) => {
             state = {...state, navigateItemType: action.navigateItemTo};
             return state;
 
-        case "setInitialRegistrantInfo_success":
-        case "set_signupfinalData_success":
-            state = {...state, registrationState: {"status":action.data.status} };
-            return state;
-        case "confirmRegistration_success":
-            state = {...state, confirmRegState: {"status":action.data.status} };
-            return state;
-        case "set_deactivate_account_success":
-            state = {...state, deactivateStatus: {"status":action.data.status} };
-            return state;
-            
-        case "add_post_success":
         case "update_post_success":
             {
-                delete action.data["status"];
-                state = {...state,  navigateItemType: EnumNavigate.postContainer, lstofPosts: action.data.lstofPosts};
+                let configData = state.configData;
+                let categoryName = action.data.lstofPosts.post_category.replace("Post","").trim();
+                let elementindex = -1;
+                for (let index = 0; index < configData.postItems[categoryName].length; index++) {
+                    const element = configData.postItems[categoryName][index];
+                    if(element.id === action.data.lstofPosts.id){
+                        elementindex = index;
+                        break;
+                    }
+                }
+                let lstofposts = {};
+                if(-1 < elementindex){
+                    configData.postItems[categoryName][elementindex].post_desc = action.data.lstofPosts.post_desc;
+                    lstofposts = {[action.data.lstofPosts.id]:configData.postItems[categoryName][elementindex]}
+                }
+                // else{
+                //     state.postcomment.post_desc = state.postinfo.post_desc;
+                //     lstofposts = {[state.postcomment.id]: state.postcomment};
+                // }
+                delete state["postcomment"];
+                delete state["postinfo"];
+                state = {...state,  navigateItemType: EnumNavigate.postContainer, configData: {...configData}, lstofPosts: lstofposts};
             }
-            return state;   
-        
-        case "clear_Previous_Post_State":
-            delete state["postcomment"];
-            delete state["postinfo"];
-            return state;
             
-        case "forgetpassword_success":
-            state = {...state, forgetpwdState: {"status":action.result.status} };
-            return state;
-        case "set_new_password_success" :
-            state = {...state, createpwdState: {"status":action.data.status} };
-            return state;
-        case "get_registeredInfo_success":
+            return state; 
+        case "get_registeredInfo_success":  
+        case "confirmRegistration_success":
         case "invoke_login_success":
 
             if(action.result.status != 200){
@@ -55,11 +55,72 @@ export const storeComponent = (state = initialState, action) => {
                     "languages"     : [...configData.getlstofLanguages()],
                     "currency"      : [...configData.getlstofCurrency()],
                     "Post"          : [...configData.getlstofPosts()],
+                    "lstofusers"    : configData.getlstofUsers(),
+                    "postItems"         : configData.getlstofPostItems(),
                     "profileData"   : configData.getRegisteredUserInfo()}
                 }
                 state = {...state, loginState: {"status": 200}}
             }
             return state;
+    
+        case "post_hide_success":
+            {
+                let lstofPosts = {...state.lstofPosts};
+                delete lstofPosts[action.data.post_id];
+    
+                let categoryName = action.data.post_category.replace("Post", "").trim();
+                const configData = state.configData;
+                let elementindex = -1;
+                for (let index = 0; index < configData.postItems[categoryName].length; index++) {
+                    const element = configData.postItems[categoryName][index];
+                    if(element.id === action.data.post_id){
+                        elementindex = index;
+                        break;
+                    }
+                }
+                // delete configData.postItems[categoryName][elementindex];
+                if(-1 < elementindex){
+                    configData.postItems[categoryName].splice(elementindex, 1)
+                }
+                state = {...state, configData: {...configData}, lstofPosts: {...lstofPosts}};
+            }
+            
+            return state;
+        
+        case "setInitialRegistrantInfo_success":
+        case "set_signupfinalData_success":
+            state = {...state, registrationState: action.data };
+            return state;
+        // case "confirmRegistration_success":
+        //     state = {...state, confirmRegState: {"status":action.data.status} };
+        //     return state;
+        case "set_deactivate_account_success":
+            state = {...state, deactivateStatus: {"status":action.data.status} };
+            return state;
+            
+        case "add_post_success":
+         //add post 
+         {
+            let configData = state.configData;
+            let category_name = StoreItemController.getPostCategoryType(action.data.new_post[0].post_category);
+            configData.postItems[category_name][0] = action.data.new_post[0];
+            // configData.postItems
+            state = {...state, configData: {...configData}, navigateItemType: EnumNavigate.homepageState };
+         }
+         return state;
+
+        case "clear_Previous_Post_State":
+            delete state["postcomment"];
+            delete state["postinfo"];
+            return state;
+            
+        case "forgetpassword_success":
+            state = {...state, forgetpwdState: {"status":action.result.status} };
+            return state;
+        case "set_new_password_success" :
+            state = {...state, createpwdState: {"status":action.data.status} };
+            return state;
+        
 
         case "store_registrantInfo":
 
@@ -75,10 +136,7 @@ export const storeComponent = (state = initialState, action) => {
 
 
         case "get_post_items_success":
-        case "post_hide_success":
-            state = {...state, lstofPosts: action.data};
-            return state;
-
+         return state;
         case "getFijoliItems_success":
 
             state = {...state, items: action.data};
@@ -99,7 +157,25 @@ export const storeComponent = (state = initialState, action) => {
 
         //holds the category post items
         case "get_post_success":
-            state = {...state, lstofPosts: action.data};
+            const userCategories = state.configData.user_category;
+            Object.keys(action.data).map((item)=>{
+                action.data[item]["user_category"] = userCategories[action.data[item].user_category-1];
+            });
+            state = {...state, lstofPosts: action.data, navigateItemType: action.navigateItemTo};
+            return state;
+            
+        case "get_selected_post_category_success":
+            {
+                let configData = state.configData;
+                let lstofposts = [];    
+                Object.keys(action.data.postItems).map(item =>{
+                    lstofposts = [...lstofposts, action.data.postItems[item]];
+                });
+                let category_name = StoreItemController.getPostCategoryType(action.data.post_category);
+
+                configData.postItems[category_name] = StoreItemController.removeDuplicates(configData.postItems[category_name], lstofposts);
+                state = {...state, lstofPosts: action.data.postItems, configData: {...configData}, navigateItemType: EnumNavigate.postContainer};
+            }
             return state;
 
         //holds user profile review comments
@@ -154,15 +230,35 @@ export const storeComponent = (state = initialState, action) => {
             delete state["postinfo"];
             delete state["postcommentState"];
             delete state["postlikedislikeState"];
+            delete state["registrationState"];
             return state;
 
+        //post in configData
         case "delete_post_success":
         {
             let lstofPosts = state.lstofPosts;
             delete lstofPosts[action.data.del_post_id]
+            {
+                let categoryName = action.data.post_category.replace("Post", "").trim();
+                const configData = state.configData;
+                let elementindex = -1;
+                for (let index = 0; index < configData.postItems[categoryName].length; index++) {
+                    const element = configData.postItems[categoryName][index];
+                    if(element.id === action.data.del_post_id){
+                        elementindex = index;
+                        break;
+                    }
+                }
+                // delete configData.postItems[categoryName][elementindex];
+                if(-1 < elementindex){
+                    configData.postItems[categoryName].splice(elementindex, 1)
+                }
+                state = {...state, configData: {...configData}, lstofPosts: {...lstofPosts}};
+            }
+            
             if(0 === Object.keys(lstofPosts).length){
                 delete state["lstofPosts"];
-                state = {...state, errormsg: {errormsg: "No posts Exists"}}
+                state = {...state, errormsg: {errormsg: "No posts available"}}
             }else{
                 state = {...state,  lstofPosts: lstofPosts};
             }
@@ -171,11 +267,13 @@ export const storeComponent = (state = initialState, action) => {
             
         case "post_like_dislike_success":
             {
-                let lstofPosts = state.lstofPosts;
-                let postcomment = {...lstofPosts[action.data.post_id]};
-                postcomment = PostCommentsController.getLikeDislikeCommentState(postcomment, action.data);
-                lstofPosts[action.data.post_id] = postcomment;
-                state = {...state, lstofPosts: lstofPosts};
+                //update in configData
+                let categoryName = StoreItemController.getPostCategoryType(action.data.post_category);
+                let postIndex = StoreItemController.getElementIndex(action.data.post_id, state.configData.postItems[categoryName]);
+                state.configData.postItems[categoryName][postIndex] = PostCommentsController.getLikeDislikeCommentState(state.configData.postItems[categoryName][postIndex],  action.data);
+                let lstofposts = (state.lstofPosts)?state.lstofPosts:{};
+                lstofposts[action.data.post_id] = {...state.configData.postItems[categoryName][postIndex]};
+                state = {...state, lstofPosts: lstofposts};
             }
             return state;
 
@@ -231,10 +329,10 @@ export const storeComponent = (state = initialState, action) => {
                     lstofPosts[action.post_id]["comments"] = {...lstofPosts[action.post_id]["comments"], ...action.data.comments};
                 }else{
                     Object.keys(action.data.comments).map((commentId)=>{
-                        let newcomment = {};
-                        Object.keys(action.data.comments[commentId]).map(key=>{
-                            newcomment[key] = action.data.comments[commentId][key];
-                        });
+                        // let newcomment = {};
+                        // Object.keys(action.data.comments[commentId]).map(key=>{
+                        //     newcomment[key] = action.data.comments[commentId][key];
+                        // });
                         lstofPosts[action.post_id]["comments"] = {...lstofPosts[action.post_id]["comments"], ...{[commentId]:action.data.comments[commentId]}};
                     });
                 }
@@ -328,10 +426,16 @@ export const storeComponent = (state = initialState, action) => {
         case "get_post_comment_success":
             {
                 delete state["postcommentState"];
+                let category_name = StoreItemController.getPostCategoryType(action.data.post_category);
+                let postIndex     = StoreItemController.getElementIndex(action.data.post_id, state.configData.postItems[category_name])
 
-                let lstofPosts = state.lstofPosts;
-                lstofPosts[action.data.post_id]["comments"] = action.data.comments;
-                state = {...state, lstofPosts: lstofPosts};
+                let configData    = state.configData;
+                configData.postItems[category_name][postIndex]["comments"] = action.data.comments;
+
+                let lstofPosts = (state.lstofPosts)?state.lstofPosts:{};
+                lstofPosts = {...lstofPosts, ...{[action.data.post_id]: configData.postItems[category_name][postIndex]}};
+                
+                state = {...state, lstofPosts: {...lstofPosts}, configData: {...configData}};
             }
 
             return state;
@@ -410,7 +514,7 @@ export const storeComponent = (state = initialState, action) => {
         case "clear_reply_post_comments":
             {
                 let lstofPosts = state.lstofPosts;
-                if((Object.keys(lstofPosts[action.post_id]).includes("comments")) &&
+                if((lstofPosts) &&(Object.keys(lstofPosts[action.post_id]).includes("comments")) &&
                    (Object.keys(lstofPosts[action.post_id].comments).includes(action.main_comment_id))){
                     lstofPosts[action.post_id].comments[action.main_comment_id].subcomments = undefined;
                 }

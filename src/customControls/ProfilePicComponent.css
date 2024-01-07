@@ -5,6 +5,22 @@
     /* border: 1px solid red; */
 }
 
+.skeleton {
+    opacity: .7;
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+
+@keyframes skeleton-loading{
+    0%{
+        background-color: hsl(200, 20%, 70%);
+    }
+
+    100%{
+        background-color: hsl(200, 20%, 95%);
+    }
+}
+
+
 .pic_container{
     position: absolute;
     border-radius: 100px;

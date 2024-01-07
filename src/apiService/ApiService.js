@@ -4,7 +4,8 @@ import axios from "axios";
 export class ApiService {
 
     constructor(){
-        this.url = "http://localhost:3030/";
+        // this.url = "http://localhost:3030/";
+        this.url = "http://35.153.55.84:3030/";
 
         //http service is initialized to create it as a singleton class
         if (ApiService.instance instanceof ApiService) {
@@ -136,6 +137,17 @@ export class ApiService {
         };
 
         var baseurl = this.url + "getotherProfile?whatsapp_number=" + data.whatsapp_number + "&logged_in_user_id="+data.logged_in_user_id;
+        let response = axios.get(baseurl, requestOptions);
+        return response;
+    }
+
+    //get latest post comments
+    getlstPostcategory(data){
+        const requestOptions = {
+            headers: { "Content-Type": "application/json" },
+        };
+
+        var baseurl = this.url + "getlstPostcategory?user_id="+ data.user_id + "&post_category=" + data.post_category+ "&logged_in_user_id=" + data.logged_in_user_id;
         let response = axios.get(baseurl, requestOptions);
         return response;
     }
@@ -277,7 +289,7 @@ export class ApiService {
             const requestOptions = {
                 headers: { "Content-Type": "application/json" },
             };
-            var baseurl = this.url + "getPostComments?post_id=" +data.post_id +"&user_id=" + data.user_id;
+            var baseurl = this.url + "getPostComments?post_id=" +data.post_id +"&user_id=" + data.user_id + "&post_category=" + data.post_category;
             let response = axios.get(baseurl, requestOptions);
             return response;
         }

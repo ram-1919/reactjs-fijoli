@@ -89,27 +89,26 @@
 .marTop20-lp {
   /* margin-top: -210px; */
   border: 1px solid red;
+  font-weight: bold;
 }
 
 .login-button-lp {
   display: flex;
   justify-content: center;
   position: absolute;
-  left: 20%;
+  left: 28%;
   bottom: 15%;
 }
 
 .button_oval_style_login-lp {
-  padding:10px;
-  background-color:#E50F32;
-  -webkit-border-radius:40px/24px;
-  -moz-border-radius:40px/24px;
-  border-radius:35px/25px;
-  color:white;
+  background-color: #E50F32;
+  border-radius: 30px/18px;
+  color: white;
   text-align: center;
   border: 1px;
-  width: 100px;
+  width: 60px;
   cursor: pointer;
+  height: 35px;
 }
 
 .image_container_controls {

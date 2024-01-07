@@ -12,6 +12,7 @@ import img_1 from "./../asset/chicken_receipe.jpeg";
 import img_2 from "./../asset/fitness_storyboard_1.jpg";
 import img_3 from "./../asset/food_receipe.jpeg";
 import img_4 from "./../asset/noodles_receipe.jpeg";
+import getlstofselectedpostcategory from './actions/getlstofselectedpostcategory';
 
 //component which displays list of post categories of a user
 const ProfilepostCatetoryComponent = ({handlePostItemClick}) =>{
@@ -20,6 +21,7 @@ const ProfilepostCatetoryComponent = ({handlePostItemClick}) =>{
     const [userid, setuserid]   = useState("");
 
     const loggedInUser  = useSelector((state)=> state.storeComponent.configData.profileData);
+    const otherUser     = useSelector((state)=> state.storeComponent.otherProfileData);
     
     useEffect(()=>{
         if(loggedInUser){
@@ -36,8 +38,10 @@ const ProfilepostCatetoryComponent = ({handlePostItemClick}) =>{
 
     //fetches list of post items for the selected category
     const handlePostClickEvent = (selectedIndex) =>{
-        dispatch(getPostItemsAction(userid));
-        dispatch(navigateItem(EnumNavigate.postContainer));
+
+        dispatch(getlstofselectedpostcategory(otherUser.user_id, lstofCategories[selectedIndex], loggedInUser.user_id));
+        // dispatch(getPostItemsAction(userid));
+        //dispatch(navigateItem(EnumNavigate.postContainer));
     }
 
   return (

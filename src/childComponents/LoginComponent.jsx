@@ -14,6 +14,8 @@ import LockIcon from '@mui/icons-material/Lock';
 
 
 import {IconButton, InputAdornment, Stack, TextField} from "@mui/material";
+import DisplayMessage from "../DisplayMessageComponent/DisplayMessage";
+import clearErrorMessageAction from "../actions/clearErrorMessageAction";
 
 //component which is used to login 
 const LoginComponent = () => {
@@ -22,9 +24,18 @@ const LoginComponent = () => {
     const navigate                  =   useNavigate();
     const dispatch                  =   useDispatch();
     const [eyeValue, seteyeValue]   =   useState(false);
-    const [loginData, setloginData] =   useState({"whatsapp_number":"9845098451", "encrypted_password":"pk"});
+    const [loginData, setloginData] =   useState({"whatsapp_number":"9845098452", "encrypted_password":"m"});
+    const [displaymsg, setdisplaymsg]       = useState({});
+
     const loginState                =   useSelector((state)=> state.storeComponent.loginState);
 
+    const errormsgstate     = useSelector(state => state.storeComponent.errormsg);
+    useEffect(()=>{
+        if(errormsgstate){
+          setdisplaymsg({"open": true, "msg": errormsgstate.errormsg});
+        }
+      },[errormsgstate]);
+    
     ///<summary>
     // api handles password visibility state
     ///</summary>
@@ -35,12 +46,9 @@ const LoginComponent = () => {
 
     useEffect(()=>{
         //reset and navigate once response 
-        if((undefined != loginState) && (200 === loginState.status)){
+        if((loginState) && (200 === loginState.status)){
             dispatch({type:"reset_status"})
             navigate("/homepage");
-        }else if((undefined != loginState) && (400 === loginState.status)){
-            dispatch({type:"reset_status"})
-            navigate("/error")
         }
     },[loginState]);
 
@@ -56,6 +64,11 @@ const LoginComponent = () => {
     ///</summary>
     const handleLoginClickEvent = () =>{
         dispatch(actionloginUser(loginData));
+    }
+
+    const handlecloseDisplayMsg = () =>{
+        setdisplaymsg({"open": false, "msg": ""});
+        dispatch(clearErrorMessageAction());
     }
 
     return(
@@ -114,6 +127,9 @@ const LoginComponent = () => {
                 <Link to="/forgetpassword">Forget Password</Link>
             </span>
         </div>
+        {
+          <DisplayMessage displayState = {displaymsg} handleclose = {handlecloseDisplayMsg}/>
+        }
         </div>
         </Stack>
     )

@@ -109,16 +109,23 @@
 }
 
 .selfprofile_div_table_follow_btn{
-  background: blue  !important;
+  background: #0ABCFF  !important;
 }
 
 .selfprofile_sel_div_table_follow_btn{
-  background: red !important;
+  background: #FFF !important;
+  border: 1px solid #0ABCFF !important;
+  color: #000 !important;
+  font-size: 12px !important;
 }
 
 .selfprofile_div_table_follow {
   margin-top: 21px;
   margin-right: 10px;
+}
+
+.selfprofile_div_table_follow button:hover{
+  background: none !important;
 }
 
 .selfprofile_div_table_row_dob_input{

@@ -10,9 +10,9 @@ const fijoliItems = [
                     {"id":"4", "name":"ssdi4"},
                     {"id":"5", "name":"ssdi5"}]
     },
-
+ 
     {
-        "key" : "Fit Storyboards",
+        "key" : "Fit StoryBoards",
         "items" : [ {"id":"21", "name":"ssdi1"}, 
                     {"id":"22", "name":"ssdi2"}, 
                     {"id":"23", "name":"ssdi3"},
@@ -21,7 +21,7 @@ const fijoliItems = [
     },
 
     {
-        "key" : "Fitness products",
+        "key" : "Fitness Products",
         "items" : [ {"id":"31", "name":"ssdi1"}, 
                     {"id":"32", "name":"ssdi2"}, 
                     {"id":"33", "name":"ssdi3"},

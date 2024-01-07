@@ -8,6 +8,7 @@ import resetStatus from '../actions/resetStatus';
 import ProfileBioComponent from './ProfileBioComponent';
 import ProfilepostCatetoryComponent from './ProfilepostCatetoryComponent';
 import ProfileReviewComponent from './ProfileReviewComponent';
+import "./ProfileTabComponent.css";
 
 //component which displays about user (BIO, REVIEWS, MY POSTS)
 const ProfileTabComponent = ({userinfo}) =>{
@@ -35,16 +36,23 @@ const ProfileTabComponent = ({userinfo}) =>{
       <table style={{width: "100%"}}>
         <tr>
           <td style={{textAlign: "left",width: "33%" }}>
+            {
               <Button variant="outlined" onClick={(e) => handleselectTabIndex(1)}
-                style={{border: "none"}}  >Bio</Button>
+                className={(tabindex === 1)?"buttonSelect":"buttonNone"} >Bio</Button>
+            }
           </td>
           <td style={{textAlign: "center",width: "33%" }}>
+            {
               <Button variant="outlined" onClick={(e) => handleselectTabIndex(2)}
-                style={{border: "none" }}  >Reviews</Button>
+               className={(tabindex === 2)?"buttonSelect":"buttonNone"} >Reviews</Button>               
+            }
           </td>
           <td style={{textAlign: "right",width: "34%" }}>
-                <Button variant="outlined"  onClick={(e) => handleselectTabIndex(3)}
-                    style={{border: "none"}} >My Posts</Button>
+            {
+              <Button variant="outlined"  onClick={(e) => handleselectTabIndex(3)}
+                  className={(tabindex === 3)?"buttonSelect":"buttonNone"}
+                  >My Posts</Button>
+            }
           </td>
         </tr>
       </table>

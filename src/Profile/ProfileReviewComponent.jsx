@@ -85,13 +85,9 @@ const ProfileReviewComponent = ({userinfo, handleselectTabIndex}) =>{
   },[reviewtype]);
 
   return (
-    <div >
-        <div>
-          <div>
+    <div className='profile_review_component'>
               <span className='profile_review_component_rating_heading'>Average Rating</span>
               <RatingComponent rating="3.5" isenable={true} />
-          </div>
-        </div>
         <div>
           {
             (isDisplayCommentCtrl) &&
